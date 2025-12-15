@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/interactive-fitness-react/', // 👈 MUST match repo name
+  base: '/interactive-fitness-react/'
 })
