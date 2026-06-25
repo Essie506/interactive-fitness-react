@@ -1,802 +1,129 @@
-<!doctype html><html dir="auto"><head><meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' https: data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'">
-<script id="__base44_dark_class__">document.documentElement.classList.remove('dark');</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:wght@400;500;600;700&display=swap">
-<style id="__base44_editor_theme__">
-:root {
-  --background: 38 27% 94%;
-  --foreground: 0 0% 4%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 4%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 4%;
-  --primary: 21 42% 55%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 9%;
-  --muted: 39 17% 93%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 9%;
-  --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 0 0% 98%;
-  --input: 0 0% 98%;
-  --ring: 21 42% 55%;
-  --radius: 0.5rem;
-  color-scheme: light;
-}
-.dark {
-  --background: 220 5% 11%;
-  --foreground: 0 0% 99%;
-  --card: 0 1% 14%;
-  --card-foreground: 0 0% 99%;
-  --popover: 0 1% 14%;
-  --popover-foreground: 0 0% 99%;
-  --primary: 21 42% 55%;
-  --primary-foreground: 0 0% 99%;
-  --secondary: 0 0% 18%;
-  --secondary-foreground: 0 0% 99%;
-  --muted: 0 0% 18%;
-  --muted-foreground: 0 0% 65%;
-  --accent: 0 0% 18%;
-  --accent-foreground: 0 0% 99%;
-  --destructive: 0 62% 30%;
-  --destructive-foreground: 0 0% 99%;
-  --border: 0 0% 16%;
-  --input: 0 0% 16%;
-  --ring: 21 42% 55%;
-  color-scheme: dark;
-}
-*, *::before, *::after { box-sizing: border-box; }
-/* shadcn's base layer: default every element's border-color to the theme
-   token. Without this, Tailwind's bare `border` utility only sets width and
-   the color falls back to currentColor (near-black text) — so the model's
-   `border` cards render heavy/dark and the `--border` value is ignored.
-   Explicit `border-{color}` utilities and inline styles still override. */
-*, *::before, *::after { border-color: hsl(var(--border)); }
-html, body {
-  margin: 0 !important;
-  padding: 0;
-  overflow: auto !important;
-  /* Inline card: transparent, so the real chat surface (a gradient, not the
-     single flat `--background` stop) shows straight through and the artifact
-     reads as inline chat content in both themes. Standalone saved file: opaque
-     `--background` so it stays readable on its own page. `--card` stays
-     elevated for emphasis blocks (stat tiles, panels) so hierarchy reads. */
-  background: hsl(var(--background)) !important;
-  color: hsl(var(--foreground));
-  font-family: 'WixMadeforText', 'Wix Madefor Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-/* 8px (vs 16px) — minimal breathing room from the iframe edge so
-   tightly-composed dashboards don't ship a fat empty halo at the top
-   before their first element. LLMs add their own inner spacing. */
-body { padding: 8px; }
-code, kbd, pre, samp { font-family: 'WixMadeforMonospace', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
-a { color: hsl(var(--primary)); }
-hr { border: 0; border-top: 1px solid hsl(var(--border)); }
-h1, h2, h3, h4, h5, h6 { font-weight: 600; color: hsl(var(--foreground)); }
-</style>
-<script id="__base44_tw_config__">
-window.tailwind = window.tailwind || {};
-window.tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      colors: {
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        primary: { DEFAULT: 'hsl(var(--primary))', foreground: 'hsl(var(--primary-foreground))' },
-        secondary: { DEFAULT: 'hsl(var(--secondary))', foreground: 'hsl(var(--secondary-foreground))' },
-        destructive: { DEFAULT: 'hsl(var(--destructive))', foreground: 'hsl(var(--destructive-foreground))' },
-        muted: { DEFAULT: 'hsl(var(--muted))', foreground: 'hsl(var(--muted-foreground))' },
-        accent: { DEFAULT: 'hsl(var(--accent))', foreground: 'hsl(var(--accent-foreground))' },
-        popover: { DEFAULT: 'hsl(var(--popover))', foreground: 'hsl(var(--popover-foreground))' },
-        card: { DEFAULT: 'hsl(var(--card))', foreground: 'hsl(var(--card-foreground))' },
-      },
-      // A bare `border` / `divide-*` (no color) falls back to Tailwind
-      // preflight's DEFAULT, which is a FIXED gray-200 (#e5e7eb) — subtle on the
-      // light card but near-white glare on the dark card. The `colors.border`
-      // map above only creates the `border-border` class; it does NOT set the
-      // uncolored default. Point the DEFAULT at the theme token so an uncolored
-      // border adapts to dark mode like the rest of the palette. (Explicit
-      // `border-primary` etc. still override.)
-      borderColor: { DEFAULT: 'hsl(var(--border))' },
-      divideColor: { DEFAULT: 'hsl(var(--border))' },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      fontFamily: {
-        // Same two-name stack as `FONT_SANS_STACK` above. The
-        // sandboxed null-origin iframe lands on `Wix Madefor Text`
-        // (Google Fonts' name); `WixMadeforText` is here only for
-        // defense-in-depth in case the iframe ever runs same-origin.
-        sans: ['WixMadeforText', 'Wix Madefor Text', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        mono: ['WixMadeforMonospace', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
-      },
-    },
-  },
-};
-</script>
-<script src="https://cdn.tailwindcss.com" id="__base44_tw_cdn__"></script></head><body><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interactive — Design Tokens & Navbar.css</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Wix Madefor Text', system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #1a1a2e;
-  padding: 0;
-  background: #faf8f5;
-}
-
 /* ============================================================
-   FILE 1: src/styles/tokens.css
-   Global design tokens — import once in main.tsx / index.css
-   ============================================================ */
-
-.file-header {
-  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFD93D 100%);
-  color: white;
-  padding: 12px 20px;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.code-block {
-  background: #1a1a2e;
-  color: #e2e8f0;
-  padding: 20px 24px;
-  font-family: 'Courier New', monospace;
-  font-size: 12.5px;
-  line-height: 1.8;
-  overflow-x: auto;
-  white-space: pre;
-}
-
-.code-block .comment  { color: #64748b; }
-.code-block .token    { color: #4ECDC4; }
-.code-block .value    { color: #FFD93D; }
-.code-block .gradient { color: #FF8E53; }
-.code-block .section  { color: #A78BFA; font-weight: 700; }
-
-.section-divider {
-  background: #f1f5f9;
-  border-left: 4px solid #FF6B6B;
-  padding: 10px 20px;
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #FF6B6B;
-  margin-top: 2px;
-}
-</style>
-</head>
-<body>
-
-<!-- ============================================================
-     FILE 1: src/styles/tokens.css
-============================================================ -->
-<div class="file-header">📁 src/styles/tokens.css — Global Design Tokens</div>
-<div class="code-block"><span class="comment">/* ============================================================
    Interactive Fitness — Design Tokens
    Source of truth for all colours, gradients, spacing, radii.
    Import once: import '@/styles/tokens.css' in main.tsx
-   ============================================================ */</span>
+   ============================================================ */
 
-<span class="section">:root {</span>
+:root {
 
-  <span class="comment">/* ── Brand colours ─────────────────────────────────── */</span>
-  <span class="token">--coral</span>:           <span class="value">#FF6B6B</span>;
-  <span class="token">--peach</span>:           <span class="value">#FF8E53</span>;
-  <span class="token">--gold</span>:            <span class="value">#FFD93D</span>;
-  <span class="token">--amber</span>:           <span class="value">#F59E0B</span>;
-  <span class="token">--mint</span>:            <span class="value">#4ECDC4</span>;
-  <span class="token">--mint-dark</span>:       <span class="value">#44A08D</span>;
-  <span class="token">--lavender</span>:        <span class="value">#A78BFA</span>;
-  <span class="token">--soft-green</span>:      <span class="value">#10B981</span>;
-  <span class="token">--rose</span>:            <span class="value">#f5576c</span>;
-  <span class="token">--purple</span>:          <span class="value">#764ba2</span>;
-  <span class="token">--indigo</span>:          <span class="value">#667eea</span>;
+  /* ── Brand colours ─────────────────────────────────── */
+  --coral:           #FF6B6B;
+  --peach:           #FF8E53;
+  --gold:            #FFD93D;
+  --amber:           #F59E0B;
+  --mint:            #4ECDC4;
+  --mint-dark:       #44A08D;
+  --lavender:        #A78BFA;
+  --soft-green:      #10B981;
+  --rose:            #f5576c;
+  --purple:          #764ba2;
+  --indigo:          #667eea;
 
-  <span class="comment">/* ── Semantic UI colours ────────────────────────────── */</span>
-  <span class="token">--color-primary</span>:   <span class="value">var(--coral)</span>;
-  <span class="token">--color-secondary</span>: <span class="value">var(--peach)</span>;
-  <span class="token">--color-accent</span>:    <span class="value">var(--mint)</span>;
-  <span class="token">--color-highlight</span>: <span class="value">var(--lavender)</span>;
-  <span class="token">--color-success</span>:   <span class="value">var(--soft-green)</span>;
-  <span class="token">--color-warning</span>:   <span class="value">var(--amber)</span>;
-  <span class="token">--color-danger</span>:    <span class="value">#ef4444</span>;
+  /* ── Semantic UI colours ────────────────────────────── */
+  --color-primary:   var(--coral);
+  --color-secondary: var(--peach);
+  --color-accent:    var(--mint);
+  --color-highlight: var(--lavender);
+  --color-success:   var(--soft-green);
+  --color-warning:   var(--amber);
+  --color-danger:    #ef4444;
 
-  <span class="comment">/* ── Text ───────────────────────────────────────────── */</span>
-  <span class="token">--text-primary</span>:    <span class="value">#1a1a2e</span>;
-  <span class="token">--text-secondary</span>:  <span class="value">#64748b</span>;
-  <span class="token">--text-muted</span>:      <span class="value">#94a3b8</span>;
-  <span class="token">--text-inverse</span>:    <span class="value">#ffffff</span>;
-  <span class="token">--text-on-brand</span>:   <span class="value">#ffffff</span>;
+  /* ── Text ───────────────────────────────────────────── */
+  --text-primary:    #1a1a2e;
+  --text-secondary:  #64748b;
+  --text-muted:      #94a3b8;
+  --text-inverse:    #ffffff;
+  --text-on-brand:   #ffffff;
 
-  <span class="comment">/* ── Surfaces ───────────────────────────────────────── */</span>
-  <span class="token">--surface-page</span>:    <span class="value">#faf8f5</span>;   <span class="comment">/* warm off-white app background */</span>
-  <span class="token">--surface-card</span>:    <span class="value">#ffffff</span>;   <span class="comment">/* post cards, panels */</span>
-  <span class="token">--surface-subtle</span>:  <span class="value">#f8fafc</span>;   <span class="comment">/* input backgrounds */</span>
-  <span class="token">--surface-overlay</span>: <span class="value">rgba(0, 0, 0, 0.45)</span>;
+  /* ── Surfaces ───────────────────────────────────────── */
+  --surface-page:    #faf8f5;   /* warm off-white app background */
+  --surface-card:    #ffffff;   /* post cards, panels */
+  --surface-subtle:  #f8fafc;   /* input backgrounds */
+  --surface-overlay: rgba(0, 0, 0, 0.45);
 
-  <span class="comment">/* ── Borders ────────────────────────────────────────── */</span>
-  <span class="token">--border-light</span>:    <span class="value">#f1f5f9</span>;
-  <span class="token">--border-default</span>:  <span class="value">#e2e8f0</span>;
-  <span class="token">--border-strong</span>:   <span class="value">#cbd5e1</span>;
+  /* ── Borders ────────────────────────────────────────── */
+  --border-light:    #f1f5f9;
+  --border-default:  #e2e8f0;
+  --border-strong:   #cbd5e1;
 
-  <span class="comment">/* ── Gradients ──────────────────────────────────────── */</span>
-  <span class="token">--gradient-brand</span>:  <span class="gradient">linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFD93D 100%)</span>;
-  <span class="token">--gradient-warm</span>:   <span class="gradient">linear-gradient(135deg, #f093fb 0%, #f5576c 100%)</span>;
-  <span class="token">--gradient-mint</span>:   <span class="gradient">linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%)</span>;
-  <span class="token">--gradient-card</span>:   <span class="gradient">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</span>;
-  <span class="token">--gradient-gold</span>:   <span class="gradient">linear-gradient(135deg, #F59E0B 0%, #FFD93D 100%)</span>;
-  <span class="token">--gradient-story</span>:  <span class="gradient">linear-gradient(45deg, #FF6B6B, #FF8E53, #FFD93D)</span>;
-  <span class="token">--gradient-navbar</span>: <span class="gradient">linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%)</span>;
+  /* ── Gradients ──────────────────────────────────────── */
+  --gradient-brand:  linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFD93D 100%);
+  --gradient-warm:   linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --gradient-mint:   linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+  --gradient-card:   linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-gold:   linear-gradient(135deg, #F59E0B 0%, #FFD93D 100%);
+  --gradient-story:  linear-gradient(45deg, #FF6B6B, #FF8E53, #FFD93D);
+  --gradient-navbar: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%);
 
-  <span class="comment">/* ── Shadows ────────────────────────────────────────── */</span>
-  <span class="token">--shadow-xs</span>:       <span class="value">0 1px 3px rgba(0,0,0,0.06)</span>;
-  <span class="token">--shadow-sm</span>:       <span class="value">0 2px 8px rgba(0,0,0,0.08)</span>;
-  <span class="token">--shadow-md</span>:       <span class="value">0 4px 16px rgba(0,0,0,0.10)</span>;
-  <span class="token">--shadow-lg</span>:       <span class="value">0 8px 30px rgba(0,0,0,0.12)</span>;
-  <span class="token">--shadow-brand</span>:    <span class="value">0 4px 16px rgba(255,107,107,0.25)</span>;
-  <span class="token">--shadow-mint</span>:     <span class="value">0 4px 16px rgba(78,205,196,0.25)</span>;
-  <span class="token">--shadow-navbar</span>:   <span class="value">0 2px 12px rgba(0,0,0,0.06)</span>;
+  /* ── Shadows ────────────────────────────────────────── */
+  --shadow-xs:       0 1px 3px rgba(0,0,0,0.06);
+  --shadow-sm:       0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md:       0 4px 16px rgba(0,0,0,0.10);
+  --shadow-lg:       0 8px 30px rgba(0,0,0,0.12);
+  --shadow-brand:    0 4px 16px rgba(255,107,107,0.25);
+  --shadow-mint:     0 4px 16px rgba(78,205,196,0.25);
+  --shadow-navbar:   0 2px 12px rgba(0,0,0,0.06);
 
-  <span class="comment">/* ── Radii ──────────────────────────────────────────── */</span>
-  <span class="token">--radius-xs</span>:       <span class="value">4px</span>;
-  <span class="token">--radius-sm</span>:       <span class="value">8px</span>;
-  <span class="token">--radius-md</span>:       <span class="value">12px</span>;
-  <span class="token">--radius-lg</span>:       <span class="value">16px</span>;
-  <span class="token">--radius-xl</span>:       <span class="value">20px</span>;
-  <span class="token">--radius-pill</span>:     <span class="value">999px</span>;
-  <span class="token">--radius-full</span>:     <span class="value">50%</span>;
+  /* ── Radii ──────────────────────────────────────────── */
+  --radius-xs:       4px;
+  --radius-sm:       8px;
+  --radius-md:       12px;
+  --radius-lg:       16px;
+  --radius-xl:       20px;
+  --radius-pill:     999px;
+  --radius-full:     50%;
 
-  <span class="comment">/* ── Spacing ────────────────────────────────────────── */</span>
-  <span class="token">--space-1</span>:         <span class="value">4px</span>;
-  <span class="token">--space-2</span>:         <span class="value">8px</span>;
-  <span class="token">--space-3</span>:         <span class="value">12px</span>;
-  <span class="token">--space-4</span>:         <span class="value">16px</span>;
-  <span class="token">--space-5</span>:         <span class="value">20px</span>;
-  <span class="token">--space-6</span>:         <span class="value">24px</span>;
-  <span class="token">--space-8</span>:         <span class="value">32px</span>;
-  <span class="token">--space-10</span>:        <span class="value">40px</span>;
+  /* ── Spacing ────────────────────────────────────────── */
+  --space-1:         4px;
+  --space-2:         8px;
+  --space-3:         12px;
+  --space-4:         16px;
+  --space-5:         20px;
+  --space-6:         24px;
+  --space-8:         32px;
+  --space-10:        40px;
 
-  <span class="comment">/* ── Navbar ─────────────────────────────────────────── */</span>
-  <span class="token">--navbar-height</span>:         <span class="value">56px</span>;
-  <span class="token">--navbar-height-desktop</span>: <span class="value">64px</span>;
-  <span class="token">--navbar-bg</span>:             <span class="gradient">linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%)</span>;
-  <span class="token">--navbar-border</span>:         <span class="value">rgba(255,107,107,0.10)</span>;
-  <span class="token">--navbar-blur</span>:           <span class="value">blur(12px)</span>;
+  /* ── Navbar ─────────────────────────────────────────── */
+  --navbar-height:         56px;
+  --navbar-height-desktop: 64px;
+  --navbar-bg:             linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%);
+  --navbar-border:         rgba(255,107,107,0.10);
+  --navbar-blur:           blur(12px);
 
-  <span class="comment">/* ── Icon buttons ───────────────────────────────────── */</span>
-  <span class="token">--icon-btn-size</span>:   <span class="value">40px</span>;
-  <span class="token">--icon-btn-size-sm</span>: <span class="value">36px</span>;
-  <span class="token">--icon-size</span>:       <span class="value">1.125rem</span>;
-  <span class="token">--icon-btn-bg</span>:     <span class="value">rgba(255, 255, 255, 0.85)</span>;
-  <span class="token">--icon-btn-shadow</span>: <span class="value">0 2px 8px rgba(0,0,0,0.08), inset 0 1px 2px rgba(255,255,255,0.8)</span>;
+  /* ── Icon buttons ───────────────────────────────────── */
+  --icon-btn-size:   40px;
+  --icon-btn-size-sm: 36px;
+  --icon-size:       1.125rem;
+  --icon-btn-bg:     rgba(255, 255, 255, 0.85);
+  --icon-btn-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 2px rgba(255,255,255,0.8);
 
-  <span class="comment">/* ── Bottom nav ─────────────────────────────────────── */</span>
-  <span class="token">--bottom-nav-height</span>: <span class="value">64px</span>;
-  <span class="token">--bottom-nav-bg</span>:     <span class="gradient">linear-gradient(180deg, rgba(255,255,255,0.96) 0%, #ffffff 100%)</span>;
+  /* ── Bottom nav ─────────────────────────────────────── */
+  --bottom-nav-height: 64px;
+  --bottom-nav-bg:     linear-gradient(180deg, rgba(255,255,255,0.96) 0%, #ffffff 100%);
 
-  <span class="comment">/* ── Transitions ────────────────────────────────────── */</span>
-  <span class="token">--transition-fast</span>:   <span class="value">0.15s ease</span>;
-  <span class="token">--transition-base</span>:   <span class="value">0.25s ease</span>;
-  <span class="token">--transition-slow</span>:   <span class="value">0.35s ease</span>;
+  /* ── Transitions ────────────────────────────────────── */
+  --transition-fast:   0.15s ease;
+  --transition-base:   0.25s ease;
+  --transition-slow:   0.35s ease;
 
-  <span class="comment">/* ── Typography ─────────────────────────────────────── */</span>
-  <span class="token">--font-sans</span>:         <span class="value">'Wix Madefor Text', system-ui, -apple-system, sans-serif</span>;
-  <span class="token">--font-size-xs</span>:      <span class="value">11px</span>;
-  <span class="token">--font-size-sm</span>:      <span class="value">13px</span>;
-  <span class="token">--font-size-base</span>:    <span class="value">15px</span>;
-  <span class="token">--font-size-md</span>:      <span class="value">16px</span>;
-  <span class="token">--font-size-lg</span>:      <span class="value">18px</span>;
-  <span class="token">--font-size-xl</span>:      <span class="value">20px</span>;
-  <span class="token">--font-weight-normal</span>: <span class="value">400</span>;
-  <span class="token">--font-weight-medium</span>: <span class="value">500</span>;
-  <span class="token">--font-weight-semi</span>:   <span class="value">600</span>;
-  <span class="token">--font-weight-bold</span>:   <span class="value">700</span>;
+  /* ── Typography ─────────────────────────────────────── */
+  --font-sans:         'Wix Madefor Text', system-ui, -apple-system, sans-serif;
+  --font-size-xs:      11px;
+  --font-size-sm:      13px;
+  --font-size-base:    15px;
+  --font-size-md:      16px;
+  --font-size-lg:      18px;
+  --font-size-xl:      20px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi:   600;
+  --font-weight-bold:   700;
 
-  <span class="comment">/* ── Verification badge colours ─────────────────────── */</span>
-  <span class="token">--badge-professional</span>: <span class="gradient">linear-gradient(135deg, #4ECDC4, #44A08D)</span>;
-  <span class="token">--badge-gym</span>:          <span class="gradient">linear-gradient(135deg, #667eea, #764ba2)</span>;
-  <span class="token">--badge-business</span>:     <span class="gradient">linear-gradient(135deg, #F59E0B, #FFD93D)</span>;
-  <span class="token">--badge-nutritionist</span>: <span class="gradient">linear-gradient(135deg, #10B981, #4ECDC4)</span>;
-  <span class="token">--badge-wellness</span>:     <span class="gradient">linear-gradient(135deg, #A78BFA, #f093fb)</span>;
+  /* ── Verification badge colours ─────────────────────── */
+  --badge-professional: linear-gradient(135deg, #4ECDC4, #44A08D);
+  --badge-gym:          linear-gradient(135deg, #667eea, #764ba2);
+  --badge-business:     linear-gradient(135deg, #F59E0B, #FFD93D);
+  --badge-nutritionist: linear-gradient(135deg, #10B981, #4ECDC4);
+  --badge-wellness:     linear-gradient(135deg, #A78BFA, #f093fb);
 
-<span class="section">}</span></div>
-
-<!-- ============================================================
-     FILE 2: src/components/layout/Navbar.css
-============================================================ -->
-<div class="file-header" style="margin-top:2px;">📁 src/components/layout/Navbar.css</div>
-
-<div class="section-divider">Base Navbar — Mobile First</div>
-<div class="code-block"><span class="comment">/* ============================================================
-   Navbar.css — Interactive Fitness
-   Mobile-first. Extends tokens.css.
-   ============================================================ */</span>
-
-<span class="comment">/* ── Navbar shell ───────────────────────────────────── */</span>
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: var(--navbar-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--space-4);
-  background: var(--navbar-bg);
-  backdrop-filter: var(--navbar-blur);
-  -webkit-backdrop-filter: var(--navbar-blur);
-  border-bottom: 1px solid var(--navbar-border);
-  box-shadow: var(--shadow-navbar);
-  z-index: 3000;
-  transition: transform var(--transition-base);
 }
-
-<span class="comment">/* Hide-on-scroll helper (JS adds/removes) */</span>
-.navbar.navbar--hidden {
-  transform: translateY(-100%);
-}
-
-<span class="comment">/* Always visible when menu is open */</span>
-.navbar.navbar--menu-open {
-  transform: translateY(0) !important;
-}
-
-<span class="comment">/* ── Nav sections ───────────────────────────────────── */</span>
-.navbar__left,
-.navbar__right {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  flex-shrink: 0;
-}
-
-.navbar__center {
-  display: none; <span class="comment">/* hidden mobile — shown desktop */</span>
-}
-
-<span class="comment">/* ── Title (mobile centre) ──────────────────────────── */</span>
-.navbar__title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  white-space: nowrap;
-  z-index: 2;
-  pointer-events: none;
-}
-
-<span class="comment">/* Brand wordmark gets gradient treatment */</span>
-.navbar__title--brand {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  pointer-events: none;
-}
-</div>
-
-<div class="section-divider">Icon Buttons</div>
-<div class="code-block"><span class="comment">/* ── Icon button base ───────────────────────────────── */</span>
-.navbar__icon-btn {
-  position: relative;
-  width: var(--icon-btn-size);
-  height: var(--icon-btn-size);
-  border-radius: var(--radius-full);
-  border: none;
-  background: var(--icon-btn-bg);
-  box-shadow: var(--icon-btn-shadow);
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  text-decoration: none;
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast),
-    background var(--transition-fast);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-
-.navbar__icon-btn i,
-.navbar__icon-btn svg {
-  font-size: var(--icon-size);
-  pointer-events: none;
-}
-
-<span class="comment">/* Hover (desktop only via media query below) */</span>
-.navbar__icon-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(255,107,107,0.2), var(--icon-btn-shadow);
-}
-
-.navbar__icon-btn:active {
-  transform: scale(0.92);
-}
-
-<span class="comment">/* Active / selected state — coral fill */</span>
-.navbar__icon-btn--active {
-  background: var(--gradient-brand);
-  color: var(--text-inverse);
-  box-shadow: var(--shadow-brand);
-}
-
-.navbar__icon-btn--active i {
-  color: white;
-}
-</div>
-
-<div class="section-divider">Unread Badges</div>
-<div class="code-block"><span class="comment">/* ── Unread badge (messages / notifications) ────────── */</span>
-.navbar__badge {
-  position: absolute;
-  top: 2px;
-  right: 2px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
-  border-radius: var(--radius-pill);
-  background: var(--coral);
-  color: white;
-  font-size: 10px;
-  font-weight: var(--font-weight-bold);
-  line-height: 16px;
-  text-align: center;
-  border: 2px solid white;
-  pointer-events: none;
-}
-
-<span class="comment">/* Dot-only variant (no count) */</span>
-.navbar__badge--dot {
-  min-width: 10px;
-  width: 10px;
-  height: 10px;
-  padding: 0;
-  top: 4px;
-  right: 4px;
-}
-</div>
-
-<div class="section-divider">Verification Badges</div>
-<div class="code-block"><span class="comment">/* ── Verification badge (nav title area) ────────────── */</span>
-.navbar__verified-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 8px 2px 4px;
-  border-radius: var(--radius-pill);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semi);
-  color: white;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.navbar__verified-badge i {
-  font-size: 11px;
-}
-
-.navbar__verified-badge--professional { background: var(--badge-professional); }
-.navbar__verified-badge--gym          { background: var(--badge-gym); }
-.navbar__verified-badge--business     { background: var(--badge-business); color: var(--text-primary); }
-.navbar__verified-badge--nutritionist { background: var(--badge-nutritionist); }
-.navbar__verified-badge--wellness     { background: var(--badge-wellness); }
-
-<span class="comment">/* Pending proof submitted icon */</span>
-.navbar__proof-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-full);
-  background: rgba(245,158,11,0.12);
-  color: var(--amber);
-  font-size: 11px;
-  flex-shrink: 0;
-}
-
-<span class="comment">/* Title + badge wrapper */</span>
-.navbar__title-wrap {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  max-width: calc(100% - 176px);
-  z-index: 2;
-}
-
-.navbar__title-wrap .navbar__title {
-  position: static;
-  transform: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-</div>
-
-<div class="section-divider">Profile Variant — viewerMode & accountType</div>
-<div class="code-block"><span class="comment">/* ── Profile variant base ───────────────────────────── */</span>
-.navbar--profile .navbar__title {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-}
-
-<span class="comment">/* Save button — visible in edit mode */</span>
-.navbar__save-btn {
-  background: var(--gradient-brand);
-  color: white;
-  box-shadow: var(--shadow-brand);
-}
-
-.navbar__save-btn:hover {
-  opacity: 0.9;
-}
-
-<span class="comment">/* Save btn hidden by default; JS/React toggles .navbar__save-btn--visible */</span>
-.navbar__save-btn {
-  display: none;
-}
-
-.navbar__save-btn--visible {
-  display: flex;
-}
-
-<span class="comment">/* Edit button (self view) */</span>
-.navbar__edit-btn {
-  display: none; <span class="comment">/* shown only for self view via React prop */</span>
-}
-
-<span class="comment">/* Follow button (visitor view) */</span>
-.navbar__follow-btn {
-  display: none; <span class="comment">/* shown only for visitor view via React prop */</span>
-}
-
-<span class="comment">/* React renders these via conditional className — */</span>
-<span class="comment">/* .navbar__edit-btn--visible / .navbar__follow-btn--visible */</span>
-.navbar__edit-btn--visible   { display: flex; }
-.navbar__follow-btn--visible { display: flex; }
-
-<span class="comment">/* Follow button gets mint gradient (action, not primary) */</span>
-.navbar__follow-btn--visible {
-  background: var(--gradient-mint);
-  color: white;
-  box-shadow: var(--shadow-mint);
-}
-</div>
-
-<div class="section-divider">Directory Variant</div>
-<div class="code-block"><span class="comment">/* ── Directory variant ──────────────────────────────── */</span>
-<span class="comment">/* Directory gets search + filter in right slot.
-   These are hidden on all other variants. */</span>
-.navbar__search-btn,
-.navbar__filter-btn {
-  display: none;
-}
-
-.navbar--directory .navbar__search-btn,
-.navbar--directory .navbar__filter-btn {
-  display: flex;
-}
-
-<span class="comment">/* Search active state */</span>
-.navbar__search-btn--active {
-  background: rgba(255,107,107,0.10);
-  color: var(--coral);
-  box-shadow: 0 0 0 2px rgba(255,107,107,0.20), var(--icon-btn-shadow);
-}
-</div>
-
-<div class="section-divider">Desktop Responsive (≥ 901px)</div>
-<div class="code-block">@media (min-width: 901px) {
-
-  .navbar {
-    height: var(--navbar-height-desktop);
-    padding: 0 var(--space-6);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    column-gap: var(--space-6);
-  }
-
-  <span class="comment">/* Title snaps left on desktop (no longer centred) */</span>
-  .navbar__title,
-  .navbar__title-wrap {
-    position: static;
-    transform: none;
-    justify-self: start;
-    max-width: unset;
-  }
-
-  <span class="comment">/* Brand title larger on desktop */</span>
-  .navbar__title--brand {
-    font-size: var(--font-size-xl);
-  }
-
-  <span class="comment">/* Center slot visible desktop */</span>
-  .navbar__center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-  }
-
-  <span class="comment">/* Desktop nav links */</span>
-  .navbar__nav-link {
-    width: var(--icon-btn-size);
-    height: var(--icon-btn-size);
-    border-radius: var(--radius-full);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: var(--icon-size);
-    transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
-  }
-
-  .navbar__nav-link:hover {
-    background: rgba(255,107,107,0.08);
-    color: var(--coral);
-    transform: translateY(-1px);
-  }
-
-  <span class="comment">/* Active nav link — coral icon */</span>
-  .navbar__nav-link--active {
-    color: var(--coral);
-  }
-
-  .navbar__nav-link--active i {
-    color: var(--coral);
-  }
-
-  <span class="comment">/* Desktop icon hover for all icon buttons */</span>
-  .navbar__icon-btn:hover {
-    transform: translateY(-1px) scale(1.05);
-    box-shadow: var(--shadow-md), inset 0 1px 2px rgba(255,255,255,0.8);
-    background: rgba(255,255,255,0.95);
-  }
-
-  <span class="comment">/* Messages button in left slot stays visible desktop */</span>
-  .navbar__messages-btn {
-    display: flex;
-  }
-
-  <span class="comment">/* Gap between left buttons */</span>
-  .navbar__left {
-    gap: var(--space-3);
-  }
-
-  .navbar__right {
-    gap: var(--space-3);
-  }
-
-}</div>
-
-<div class="section-divider">Tablet (768px – 900px)</div>
-<div class="code-block">@media (min-width: 768px) and (max-width: 900px) {
-
-  .navbar {
-    height: 60px;
-    padding: 0 var(--space-5);
-  }
-
-  <span class="comment">/* Tablet: show center title, hide full nav links */</span>
-  .navbar__center {
-    display: none;
-  }
-
-  .navbar__title--brand {
-    font-size: var(--font-size-lg);
-  }
-
-}</div>
-
-<div class="section-divider">Mobile (≤ 767px)</div>
-<div class="code-block">@media (max-width: 767px) {
-
-  <span class="comment">/* Messages button hidden in left slot on mobile
-     (lives in bottom nav instead) */</span>
-  .navbar__messages-btn {
-    display: none;
-  }
-
-  <span class="comment">/* Notifications hidden on mobile (bottom nav) */</span>
-  .navbar__notifications-btn {
-    display: none;
-  }
-
-  <span class="comment">/* Composer (plus) stays visible top-right mobile */</span>
-  .navbar__composer-btn {
-    display: flex;
-  }
-
-  <span class="comment">/* Icon button slightly smaller on mobile */</span>
-  .navbar__icon-btn {
-    width: var(--icon-btn-size-sm);
-    height: var(--icon-btn-size-sm);
-  }
-
-  <span class="comment">/* Feed: no extra right buttons needed on mobile */</span>
-  .navbar--feed .navbar__notifications-btn {
-    display: none;
-  }
-
-  <span class="comment">/* Directory: show filter on mobile */</span>
-  .navbar--directory .navbar__filter-btn {
-    display: flex;
-  }
-
-  <span class="comment">/* Directory: show search toggle on mobile */</span>
-  .navbar--directory .navbar__search-btn {
-    display: flex;
-  }
-
-}</div>
-
-<div class="section-divider">Difficulty Chips & Tag Chips (shared utility)</div>
-<div class="code-block"><span class="comment">/* ── Verification status pill ───────────────────────── */</span>
-.status-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semi);
-}
-
-.status-pill--verified   { background: rgba(78,205,196,0.12);  color: var(--mint-dark); }
-.status-pill--pending    { background: rgba(245,158,11,0.12);  color: var(--amber); }
-.status-pill--rejected   { background: rgba(239,68,68,0.10);   color: var(--color-danger); }
-.status-pill--unverified { background: rgba(100,116,139,0.10); color: var(--text-secondary); }
-
-<span class="comment">/* ── Tag chip ────────────────────────────────────────── */</span>
-.tag-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 10px;
-  border-radius: var(--radius-pill);
-  background: rgba(255,107,107,0.08);
-  color: var(--coral);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-</div>
-
-</body>
-</html>
-<script id="__base44_dark_class_post__">document.documentElement.classList.remove('dark');</script></body></html>
