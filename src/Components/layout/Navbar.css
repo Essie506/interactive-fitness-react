@@ -1,0 +1,473 @@
+<!-- ============================================================
+     FILE 2: src/components/layout/Navbar.css
+============================================================ -->
+<div class="file-header" style="margin-top:2px;">📁 src/components/layout/Navbar.css</div>
+
+<div class="section-divider">Base Navbar — Mobile First</div>
+<div class="code-block"><span class="comment">/* ============================================================
+   Navbar.css — Interactive Fitness
+   Mobile-first. Extends tokens.css.
+   ============================================================ */</span>
+
+<span class="comment">/* ── Navbar shell ───────────────────────────────────── */</span>
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-4);
+  background: var(--navbar-bg);
+  backdrop-filter: var(--navbar-blur);
+  -webkit-backdrop-filter: var(--navbar-blur);
+  border-bottom: 1px solid var(--navbar-border);
+  box-shadow: var(--shadow-navbar);
+  z-index: 3000;
+  transition: transform var(--transition-base);
+}
+
+<span class="comment">/* Hide-on-scroll helper (JS adds/removes) */</span>
+.navbar.navbar--hidden {
+  transform: translateY(-100%);
+}
+
+<span class="comment">/* Always visible when menu is open */</span>
+.navbar.navbar--menu-open {
+  transform: translateY(0) !important;
+}
+
+<span class="comment">/* ── Nav sections ───────────────────────────────────── */</span>
+.navbar__left,
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.navbar__center {
+  display: none; <span class="comment">/* hidden mobile — shown desktop */</span>
+}
+
+<span class="comment">/* ── Title (mobile centre) ──────────────────────────── */</span>
+.navbar__title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  white-space: nowrap;
+  z-index: 2;
+  pointer-events: none;
+}
+
+<span class="comment">/* Brand wordmark gets gradient treatment */</span>
+.navbar__title--brand {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  pointer-events: none;
+}
+</div>
+
+<div class="section-divider">Icon Buttons</div>
+<div class="code-block"><span class="comment">/* ── Icon button base ───────────────────────────────── */</span>
+.navbar__icon-btn {
+  position: relative;
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--icon-btn-bg);
+  box-shadow: var(--icon-btn-shadow);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+  flex-shrink: 0;
+}
+
+.navbar__icon-btn i,
+.navbar__icon-btn svg {
+  font-size: var(--icon-size);
+  pointer-events: none;
+}
+
+<span class="comment">/* Hover (desktop only via media query below) */</span>
+.navbar__icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255,107,107,0.2), var(--icon-btn-shadow);
+}
+
+.navbar__icon-btn:active {
+  transform: scale(0.92);
+}
+
+<span class="comment">/* Active / selected state — coral fill */</span>
+.navbar__icon-btn--active {
+  background: var(--gradient-brand);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-brand);
+}
+
+.navbar__icon-btn--active i {
+  color: white;
+}
+</div>
+
+<div class="section-divider">Unread Badges</div>
+<div class="code-block"><span class="comment">/* ── Unread badge (messages / notifications) ────────── */</span>
+.navbar__badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: var(--radius-pill);
+  background: var(--coral);
+  color: white;
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  line-height: 16px;
+  text-align: center;
+  border: 2px solid white;
+  pointer-events: none;
+}
+
+<span class="comment">/* Dot-only variant (no count) */</span>
+.navbar__badge--dot {
+  min-width: 10px;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  top: 4px;
+  right: 4px;
+}
+</div>
+
+<div class="section-divider">Verification Badges</div>
+<div class="code-block"><span class="comment">/* ── Verification badge (nav title area) ────────────── */</span>
+.navbar__verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 4px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semi);
+  color: white;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.navbar__verified-badge i {
+  font-size: 11px;
+}
+
+.navbar__verified-badge--professional { background: var(--badge-professional); }
+.navbar__verified-badge--gym          { background: var(--badge-gym); }
+.navbar__verified-badge--business     { background: var(--badge-business); color: var(--text-primary); }
+.navbar__verified-badge--nutritionist { background: var(--badge-nutritionist); }
+.navbar__verified-badge--wellness     { background: var(--badge-wellness); }
+
+<span class="comment">/* Pending proof submitted icon */</span>
+.navbar__proof-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: rgba(245,158,11,0.12);
+  color: var(--amber);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+<span class="comment">/* Title + badge wrapper */</span>
+.navbar__title-wrap {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: calc(100% - 176px);
+  z-index: 2;
+}
+
+.navbar__title-wrap .navbar__title {
+  position: static;
+  transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</div>
+
+<div class="section-divider">Profile Variant — viewerMode & accountType</div>
+<div class="code-block"><span class="comment">/* ── Profile variant base ───────────────────────────── */</span>
+.navbar--profile .navbar__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+<span class="comment">/* Save button — visible in edit mode */</span>
+.navbar__save-btn {
+  background: var(--gradient-brand);
+  color: white;
+  box-shadow: var(--shadow-brand);
+}
+
+.navbar__save-btn:hover {
+  opacity: 0.9;
+}
+
+<span class="comment">/* Save btn hidden by default; JS/React toggles .navbar__save-btn--visible */</span>
+.navbar__save-btn {
+  display: none;
+}
+
+.navbar__save-btn--visible {
+  display: flex;
+}
+
+<span class="comment">/* Edit button (self view) */</span>
+.navbar__edit-btn {
+  display: none; <span class="comment">/* shown only for self view via React prop */</span>
+}
+
+<span class="comment">/* Follow button (visitor view) */</span>
+.navbar__follow-btn {
+  display: none; <span class="comment">/* shown only for visitor view via React prop */</span>
+}
+
+<span class="comment">/* React renders these via conditional className — */</span>
+<span class="comment">/* .navbar__edit-btn--visible / .navbar__follow-btn--visible */</span>
+.navbar__edit-btn--visible   { display: flex; }
+.navbar__follow-btn--visible { display: flex; }
+
+<span class="comment">/* Follow button gets mint gradient (action, not primary) */</span>
+.navbar__follow-btn--visible {
+  background: var(--gradient-mint);
+  color: white;
+  box-shadow: var(--shadow-mint);
+}
+</div>
+
+<div class="section-divider">Directory Variant</div>
+<div class="code-block"><span class="comment">/* ── Directory variant ──────────────────────────────── */</span>
+<span class="comment">/* Directory gets search + filter in right slot.
+   These are hidden on all other variants. */</span>
+.navbar__search-btn,
+.navbar__filter-btn {
+  display: none;
+}
+
+.navbar--directory .navbar__search-btn,
+.navbar--directory .navbar__filter-btn {
+  display: flex;
+}
+
+<span class="comment">/* Search active state */</span>
+.navbar__search-btn--active {
+  background: rgba(255,107,107,0.10);
+  color: var(--coral);
+  box-shadow: 0 0 0 2px rgba(255,107,107,0.20), var(--icon-btn-shadow);
+}
+</div>
+
+<div class="section-divider">Desktop Responsive (≥ 901px)</div>
+<div class="code-block">@media (min-width: 901px) {
+
+  .navbar {
+    height: var(--navbar-height-desktop);
+    padding: 0 var(--space-6);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: var(--space-6);
+  }
+
+  <span class="comment">/* Title snaps left on desktop (no longer centred) */</span>
+  .navbar__title,
+  .navbar__title-wrap {
+    position: static;
+    transform: none;
+    justify-self: start;
+    max-width: unset;
+  }
+
+  <span class="comment">/* Brand title larger on desktop */</span>
+  .navbar__title--brand {
+    font-size: var(--font-size-xl);
+  }
+
+  <span class="comment">/* Center slot visible desktop */</span>
+  .navbar__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  <span class="comment">/* Desktop nav links */</span>
+  .navbar__nav-link {
+    width: var(--icon-btn-size);
+    height: var(--icon-btn-size);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: var(--icon-size);
+    transition: color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .navbar__nav-link:hover {
+    background: rgba(255,107,107,0.08);
+    color: var(--coral);
+    transform: translateY(-1px);
+  }
+
+  <span class="comment">/* Active nav link — coral icon */</span>
+  .navbar__nav-link--active {
+    color: var(--coral);
+  }
+
+  .navbar__nav-link--active i {
+    color: var(--coral);
+  }
+
+  <span class="comment">/* Desktop icon hover for all icon buttons */</span>
+  .navbar__icon-btn:hover {
+    transform: translateY(-1px) scale(1.05);
+    box-shadow: var(--shadow-md), inset 0 1px 2px rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.95);
+  }
+
+  <span class="comment">/* Messages button in left slot stays visible desktop */</span>
+  .navbar__messages-btn {
+    display: flex;
+  }
+
+  <span class="comment">/* Gap between left buttons */</span>
+  .navbar__left {
+    gap: var(--space-3);
+  }
+
+  .navbar__right {
+    gap: var(--space-3);
+  }
+
+}</div>
+
+<div class="section-divider">Tablet (768px – 900px)</div>
+<div class="code-block">@media (min-width: 768px) and (max-width: 900px) {
+
+  .navbar {
+    height: 60px;
+    padding: 0 var(--space-5);
+  }
+
+  <span class="comment">/* Tablet: show center title, hide full nav links */</span>
+  .navbar__center {
+    display: none;
+  }
+
+  .navbar__title--brand {
+    font-size: var(--font-size-lg);
+  }
+
+}</div>
+
+<div class="section-divider">Mobile (≤ 767px)</div>
+<div class="code-block">@media (max-width: 767px) {
+
+  <span class="comment">/* Messages button hidden in left slot on mobile
+     (lives in bottom nav instead) */</span>
+  .navbar__messages-btn {
+    display: none;
+  }
+
+  <span class="comment">/* Notifications hidden on mobile (bottom nav) */</span>
+  .navbar__notifications-btn {
+    display: none;
+  }
+
+  <span class="comment">/* Composer (plus) stays visible top-right mobile */</span>
+  .navbar__composer-btn {
+    display: flex;
+  }
+
+  <span class="comment">/* Icon button slightly smaller on mobile */</span>
+  .navbar__icon-btn {
+    width: var(--icon-btn-size-sm);
+    height: var(--icon-btn-size-sm);
+  }
+
+  <span class="comment">/* Feed: no extra right buttons needed on mobile */</span>
+  .navbar--feed .navbar__notifications-btn {
+    display: none;
+  }
+
+  <span class="comment">/* Directory: show filter on mobile */</span>
+  .navbar--directory .navbar__filter-btn {
+    display: flex;
+  }
+
+  <span class="comment">/* Directory: show search toggle on mobile */</span>
+  .navbar--directory .navbar__search-btn {
+    display: flex;
+  }
+
+}</div>
+
+<div class="section-divider">Difficulty Chips & Tag Chips (shared utility)</div>
+<div class="code-block"><span class="comment">/* ── Verification status pill ───────────────────────── */</span>
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semi);
+}
+
+.status-pill--verified   { background: rgba(78,205,196,0.12);  color: var(--mint-dark); }
+.status-pill--pending    { background: rgba(245,158,11,0.12);  color: var(--amber); }
+.status-pill--rejected   { background: rgba(239,68,68,0.10);   color: var(--color-danger); }
+.status-pill--unverified { background: rgba(100,116,139,0.10); color: var(--text-secondary); }
+
+<span class="comment">/* ── Tag chip ────────────────────────────────────────── */</span>
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255,107,107,0.08);
+  color: var(--coral);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+</div>
+
+</body>
+</html>
+<script id="__base44_dark_class_post__">document.documentElement.classList.remove('dark');</script></body></html>
