@@ -1,6 +1,7 @@
 // components/layout/Navbar.tsx
-import { useUI }       from '@/context/UIContext'
-import { useMessages } from '@/context/MessagesContext'
+
+// import { useUI } from '@/context/UIContext'
+// import { useMessages } from '@/context/MessagesContext'
 import {
   NavbarProps,
   NavbarProfileData,
@@ -329,8 +330,9 @@ export function Navbar({
   directoryData,
 }: NavbarProps) {
   // ── Original hooks — preserved exactly as before ──────────
-  const { setMenuOpen, setComposerOpen } = useUI()
-  const { setMode } = useMessages()
+ const setMenuOpen = (open: boolean) => console.log('menu open', open)
+const setComposerOpen = (open: boolean) => console.log('composer open', open)
+const setMode = (mode: string) => console.log('messages mode', mode)
 
   return (
     <nav className={`navbar navbar--${variant}`}>
