@@ -1,8 +1,7 @@
-MobileBottomNav.tsx
 import './MobileBottomNav.css'
 import { NavLink } from 'react-router-dom'
 import { MessageCircle, Search, CalendarDays, Bell } from 'lucide-react'
-import { useMessages } from '/context/MessagesContext'
+import { useMessages } from './context/MessagesContext'
 
 interface MobileBottomNavProps {
   unreadMessages?: number
