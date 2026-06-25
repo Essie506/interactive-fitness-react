@@ -1,15 +1,9 @@
-<!-- ============================================================
-     FILE 2: src/components/layout/Navbar.css
-============================================================ -->
-<div class="file-header" style="margin-top:2px;">📁 src/components/layout/Navbar.css</div>
-
-<div class="section-divider">Base Navbar — Mobile First</div>
-<div class="code-block"><span class="comment">/* ============================================================
+/* ============================================================
    Navbar.css — Interactive Fitness
    Mobile-first. Extends tokens.css.
-   ============================================================ */</span>
+   ============================================================ */
 
-<span class="comment">/* ── Navbar shell ───────────────────────────────────── */</span>
+/* ── Navbar shell ───────────────────────────────────── */
 .navbar {
   position: fixed;
   top: 0;
@@ -29,17 +23,17 @@
   transition: transform var(--transition-base);
 }
 
-<span class="comment">/* Hide-on-scroll helper (JS adds/removes) */</span>
+/* Hide-on-scroll helper (JS adds/removes) */
 .navbar.navbar--hidden {
   transform: translateY(-100%);
 }
 
-<span class="comment">/* Always visible when menu is open */</span>
+/* Always visible when menu is open */
 .navbar.navbar--menu-open {
   transform: translateY(0) !important;
 }
 
-<span class="comment">/* ── Nav sections ───────────────────────────────────── */</span>
+/* ── Nav sections ───────────────────────────────────── */
 .navbar__left,
 .navbar__right {
   display: flex;
@@ -49,10 +43,10 @@
 }
 
 .navbar__center {
-  display: none; <span class="comment">/* hidden mobile — shown desktop */</span>
+  display: none; /* hidden mobile — shown desktop */
 }
 
-<span class="comment">/* ── Title (mobile centre) ──────────────────────────── */</span>
+/* ── Title (mobile centre) ──────────────────────────── */
 .navbar__title {
   position: absolute;
   left: 50%;
@@ -65,7 +59,7 @@
   pointer-events: none;
 }
 
-<span class="comment">/* Brand wordmark gets gradient treatment */</span>
+/* Brand wordmark gets gradient treatment */
 .navbar__title--brand {
   background: var(--gradient-brand);
   -webkit-background-clip: text;
@@ -73,10 +67,8 @@
   background-clip: text;
   pointer-events: none;
 }
-</div>
 
-<div class="section-divider">Icon Buttons</div>
-<div class="code-block"><span class="comment">/* ── Icon button base ───────────────────────────────── */</span>
+/* ── Icon button base ───────────────────────────────── */
 .navbar__icon-btn {
   position: relative;
   width: var(--icon-btn-size);
@@ -105,7 +97,7 @@
   pointer-events: none;
 }
 
-<span class="comment">/* Hover (desktop only via media query below) */</span>
+/* Hover (desktop only via media query below) */
 .navbar__icon-btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(255,107,107,0.2), var(--icon-btn-shadow);
@@ -115,7 +107,7 @@
   transform: scale(0.92);
 }
 
-<span class="comment">/* Active / selected state — coral fill */</span>
+/* Active / selected state — coral fill */
 .navbar__icon-btn--active {
   background: var(--gradient-brand);
   color: var(--text-inverse);
@@ -125,10 +117,8 @@
 .navbar__icon-btn--active i {
   color: white;
 }
-</div>
 
-<div class="section-divider">Unread Badges</div>
-<div class="code-block"><span class="comment">/* ── Unread badge (messages / notifications) ────────── */</span>
+/* ── Unread badge (messages / notifications) ────────── */
 .navbar__badge {
   position: absolute;
   top: 2px;
@@ -147,7 +137,7 @@
   pointer-events: none;
 }
 
-<span class="comment">/* Dot-only variant (no count) */</span>
+/* Dot-only variant (no count) */
 .navbar__badge--dot {
   min-width: 10px;
   width: 10px;
@@ -156,10 +146,8 @@
   top: 4px;
   right: 4px;
 }
-</div>
 
-<div class="section-divider">Verification Badges</div>
-<div class="code-block"><span class="comment">/* ── Verification badge (nav title area) ────────────── */</span>
+/* ── Verification badge (nav title area) ────────────── */
 .navbar__verified-badge {
   display: inline-flex;
   align-items: center;
@@ -183,7 +171,7 @@
 .navbar__verified-badge--nutritionist { background: var(--badge-nutritionist); }
 .navbar__verified-badge--wellness     { background: var(--badge-wellness); }
 
-<span class="comment">/* Pending proof submitted icon */</span>
+/* Pending proof submitted icon */
 .navbar__proof-icon {
   display: inline-flex;
   align-items: center;
@@ -197,7 +185,7 @@
   flex-shrink: 0;
 }
 
-<span class="comment">/* Title + badge wrapper */</span>
+/* Title + badge wrapper */
 .navbar__title-wrap {
   position: absolute;
   left: 50%;
@@ -216,17 +204,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-</div>
 
-<div class="section-divider">Profile Variant — viewerMode & accountType</div>
-<div class="code-block"><span class="comment">/* ── Profile variant base ───────────────────────────── */</span>
+/* ── Profile variant base ───────────────────────────── */
 .navbar--profile .navbar__title {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
 }
 
-<span class="comment">/* Save button — visible in edit mode */</span>
+/* Save button — visible in edit mode */
 .navbar__save-btn {
   background: var(--gradient-brand);
   color: white;
@@ -237,7 +223,7 @@
   opacity: 0.9;
 }
 
-<span class="comment">/* Save btn hidden by default; JS/React toggles .navbar__save-btn--visible */</span>
+/* Save btn hidden by default; JS/React toggles .navbar__save-btn--visible */
 .navbar__save-btn {
   display: none;
 }
@@ -246,33 +232,31 @@
   display: flex;
 }
 
-<span class="comment">/* Edit button (self view) */</span>
+/* Edit button (self view) */
 .navbar__edit-btn {
-  display: none; <span class="comment">/* shown only for self view via React prop */</span>
+  display: none; /* shown only for self view via React prop */
 }
 
-<span class="comment">/* Follow button (visitor view) */</span>
+/* Follow button (visitor view) */
 .navbar__follow-btn {
-  display: none; <span class="comment">/* shown only for visitor view via React prop */</span>
+  display: none; /* shown only for visitor view via React prop */
 }
 
-<span class="comment">/* React renders these via conditional className — */</span>
-<span class="comment">/* .navbar__edit-btn--visible / .navbar__follow-btn--visible */</span>
+/* React renders these via conditional className — */
+/* .navbar__edit-btn--visible / .navbar__follow-btn--visible */
 .navbar__edit-btn--visible   { display: flex; }
 .navbar__follow-btn--visible { display: flex; }
 
-<span class="comment">/* Follow button gets mint gradient (action, not primary) */</span>
+/* Follow button gets mint gradient (action, not primary) */
 .navbar__follow-btn--visible {
   background: var(--gradient-mint);
   color: white;
   box-shadow: var(--shadow-mint);
 }
-</div>
 
-<div class="section-divider">Directory Variant</div>
-<div class="code-block"><span class="comment">/* ── Directory variant ──────────────────────────────── */</span>
-<span class="comment">/* Directory gets search + filter in right slot.
-   These are hidden on all other variants. */</span>
+/* ── Directory variant ──────────────────────────────── */
+/* Directory gets search + filter in right slot.
+   These are hidden on all other variants. */
 .navbar__search-btn,
 .navbar__filter-btn {
   display: none;
@@ -283,16 +267,14 @@
   display: flex;
 }
 
-<span class="comment">/* Search active state */</span>
+/* Search active state */
 .navbar__search-btn--active {
   background: rgba(255,107,107,0.10);
   color: var(--coral);
   box-shadow: 0 0 0 2px rgba(255,107,107,0.20), var(--icon-btn-shadow);
 }
-</div>
 
-<div class="section-divider">Desktop Responsive (≥ 901px)</div>
-<div class="code-block">@media (min-width: 901px) {
+@media (min-width: 901px) {
 
   .navbar {
     height: var(--navbar-height-desktop);
@@ -303,7 +285,7 @@
     column-gap: var(--space-6);
   }
 
-  <span class="comment">/* Title snaps left on desktop (no longer centred) */</span>
+  /* Title snaps left on desktop (no longer centred) */
   .navbar__title,
   .navbar__title-wrap {
     position: static;
@@ -312,12 +294,12 @@
     max-width: unset;
   }
 
-  <span class="comment">/* Brand title larger on desktop */</span>
+  /* Brand title larger on desktop */
   .navbar__title--brand {
     font-size: var(--font-size-xl);
   }
 
-  <span class="comment">/* Center slot visible desktop */</span>
+  /* Center slot visible desktop */
   .navbar__center {
     display: flex;
     align-items: center;
@@ -325,7 +307,7 @@
     gap: var(--space-2);
   }
 
-  <span class="comment">/* Desktop nav links */</span>
+  /* Desktop nav links */
   .navbar__nav-link {
     width: var(--icon-btn-size);
     height: var(--icon-btn-size);
@@ -345,7 +327,7 @@
     transform: translateY(-1px);
   }
 
-  <span class="comment">/* Active nav link — coral icon */</span>
+  /* Active nav link — coral icon */
   .navbar__nav-link--active {
     color: var(--coral);
   }
@@ -354,19 +336,19 @@
     color: var(--coral);
   }
 
-  <span class="comment">/* Desktop icon hover for all icon buttons */</span>
+  /* Desktop icon hover for all icon buttons */
   .navbar__icon-btn:hover {
     transform: translateY(-1px) scale(1.05);
     box-shadow: var(--shadow-md), inset 0 1px 2px rgba(255,255,255,0.8);
     background: rgba(255,255,255,0.95);
   }
 
-  <span class="comment">/* Messages button in left slot stays visible desktop */</span>
+  /* Messages button in left slot stays visible desktop */
   .navbar__messages-btn {
     display: flex;
   }
 
-  <span class="comment">/* Gap between left buttons */</span>
+  /* Gap between left buttons */
   .navbar__left {
     gap: var(--space-3);
   }
@@ -375,17 +357,16 @@
     gap: var(--space-3);
   }
 
-}</div>
+}
 
-<div class="section-divider">Tablet (768px – 900px)</div>
-<div class="code-block">@media (min-width: 768px) and (max-width: 900px) {
+@media (min-width: 768px) and (max-width: 900px) {
 
   .navbar {
     height: 60px;
     padding: 0 var(--space-5);
   }
 
-  <span class="comment">/* Tablet: show center title, hide full nav links */</span>
+  /* Tablet: show center title, hide full nav links */
   .navbar__center {
     display: none;
   }
@@ -394,52 +375,50 @@
     font-size: var(--font-size-lg);
   }
 
-}</div>
+}
 
-<div class="section-divider">Mobile (≤ 767px)</div>
-<div class="code-block">@media (max-width: 767px) {
+@media (max-width: 767px) {
 
-  <span class="comment">/* Messages button hidden in left slot on mobile
-     (lives in bottom nav instead) */</span>
+  /* Messages button hidden in left slot on mobile
+     (lives in bottom nav instead) */
   .navbar__messages-btn {
     display: none;
   }
 
-  <span class="comment">/* Notifications hidden on mobile (bottom nav) */</span>
+  /* Notifications hidden on mobile (bottom nav) */
   .navbar__notifications-btn {
     display: none;
   }
 
-  <span class="comment">/* Composer (plus) stays visible top-right mobile */</span>
+  /* Composer (plus) stays visible top-right mobile */
   .navbar__composer-btn {
     display: flex;
   }
 
-  <span class="comment">/* Icon button slightly smaller on mobile */</span>
+  /* Icon button slightly smaller on mobile */
   .navbar__icon-btn {
     width: var(--icon-btn-size-sm);
     height: var(--icon-btn-size-sm);
   }
 
-  <span class="comment">/* Feed: no extra right buttons needed on mobile */</span>
+  /* Feed: no extra right buttons needed on mobile */
   .navbar--feed .navbar__notifications-btn {
     display: none;
   }
 
-  <span class="comment">/* Directory: show filter on mobile */</span>
+  /* Directory: show filter on mobile */
   .navbar--directory .navbar__filter-btn {
     display: flex;
   }
 
-  <span class="comment">/* Directory: show search toggle on mobile */</span>
+  /* Directory: show search toggle on mobile */
   .navbar--directory .navbar__search-btn {
     display: flex;
   }
 
-}</div>
+}
 
-<div class="section-divider">Difficulty Chips & Tag Chips (shared utility)</div>
-<div class="code-block"><span class="comment">/* ── Verification status pill ───────────────────────── */</span>
+/* ── Verification status pill ───────────────────────── */
 .status-pill {
   display: inline-flex;
   align-items: center;
@@ -455,7 +434,7 @@
 .status-pill--rejected   { background: rgba(239,68,68,0.10);   color: var(--color-danger); }
 .status-pill--unverified { background: rgba(100,116,139,0.10); color: var(--text-secondary); }
 
-<span class="comment">/* ── Tag chip ────────────────────────────────────────── */</span>
+/* ── Tag chip ────────────────────────────────────────── */
 .tag-chip {
   display: inline-flex;
   align-items: center;
@@ -466,8 +445,3 @@
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
 }
-</div>
-
-</body>
-</html>
-<script id="__base44_dark_class_post__">document.documentElement.classList.remove('dark');</script></body></html>
