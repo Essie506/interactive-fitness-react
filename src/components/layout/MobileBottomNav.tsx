@@ -1,7 +1,6 @@
 import './MobileBottomNav.css'
 import { NavLink } from 'react-router-dom'
 import { MessageCircle, Search, CalendarDays, Bell } from 'lucide-react'
-import { useMessages } from './context/MessagesContext'
 
 interface MobileBottomNavProps {
   unreadMessages?: number
@@ -12,18 +11,16 @@ export function MobileBottomNav({
   unreadMessages = 0,
   unreadNotifications = 0,
 }: MobileBottomNavProps) {
-  const { setMode } = useMessages()
-
   return (
     <nav className="mobile-bottom-nav">
       <div className="mobile-bottom-nav__bg" />
 
-      {/* Messages — opens drawer, not a route link */}
-      <button
-        className="mobile-bottom-nav__item"
-        onClick={() => setMode('drawer')}
-        aria-label="Open messages"
-        type="button"
+      <NavLink
+        to="/messages"
+        className={({ isActive }: { isActive: boolean }) =>
+          `mobile-bottom-nav__item${isActive ? ' mobile-bottom-nav__item--active' : ''}`
+        }
+        aria-label="Messages"
       >
         <span className="mobile-bottom-nav__icon-wrap">
           <MessageCircle size={22} strokeWidth={1.8} />
@@ -34,12 +31,11 @@ export function MobileBottomNav({
           )}
         </span>
         <span className="mobile-bottom-nav__label">Messages</span>
-      </button>
+      </NavLink>
 
-      {/* Search → routes to /directory */}
       <NavLink
         to="/directory"
-        className={({ isActive }) =>
+        className={({ isActive }: { isActive: boolean }) =>
           `mobile-bottom-nav__item${isActive ? ' mobile-bottom-nav__item--active' : ''}`
         }
         aria-label="Search"
@@ -50,10 +46,9 @@ export function MobileBottomNav({
         <span className="mobile-bottom-nav__label">Search</span>
       </NavLink>
 
-      {/* Calendar */}
       <NavLink
         to="/calendar"
-        className={({ isActive }) =>
+        className={({ isActive }: { isActive: boolean }) =>
           `mobile-bottom-nav__item${isActive ? ' mobile-bottom-nav__item--active' : ''}`
         }
         aria-label="Calendar"
@@ -64,10 +59,9 @@ export function MobileBottomNav({
         <span className="mobile-bottom-nav__label">Calendar</span>
       </NavLink>
 
-      {/* Notifications */}
       <NavLink
         to="/notifications"
-        className={({ isActive }) =>
+        className={({ isActive }: { isActive: boolean }) =>
           `mobile-bottom-nav__item${isActive ? ' mobile-bottom-nav__item--active' : ''}`
         }
         aria-label="Notifications"
