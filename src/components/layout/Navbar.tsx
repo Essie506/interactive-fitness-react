@@ -9,7 +9,7 @@ import {
   VerificationType,
   VerificationStatus,
   VERIFICATION_LABELS,
-} from './navbar.types'
+} from './Navbar.types'
 
 // ─────────────────────────────────────────────────────────────
 //  Small private helpers
