@@ -11,6 +11,8 @@ import {
   VERIFICATION_LABELS,
 } from './Navbar.types'
 
+import './Navbar.css'
+
 // ─────────────────────────────────────────────────────────────
 //  Small private helpers
 // ─────────────────────────────────────────────────────────────
