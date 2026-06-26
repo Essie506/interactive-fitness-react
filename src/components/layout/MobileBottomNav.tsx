@@ -1,3 +1,4 @@
+// @ts-ignore: allow importing CSS without type declarations
 import './MobileBottomNav.css'
 import { NavLink } from 'react-router-dom'
 import { MessageCircle, Search, CalendarDays, Bell } from 'lucide-react'

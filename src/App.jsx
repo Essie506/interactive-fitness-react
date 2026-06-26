@@ -14,10 +14,7 @@ function App() {
         Coming Soon...
       </main>
 
-      <MobileBottomNav
-        unreadMessages={2}
-        unreadNotifications={5}
-      />
+  
     </>
   )
 }
