@@ -6,6 +6,13 @@
 
 :root {
 
+
+  /* ── Layout ─────────────────────────────────────────── */
+--mobile-max-width: 26.875rem;   /* 430px */
+--tablet-max-width: 48rem;
+--desktop-max-width: 75rem;
+--content-max-width: 90rem;
+
   /* ── Brand colours ─────────────────────────────────── */
   --coral:           #FF6B6B;
   --peach:           #FF8E53;
