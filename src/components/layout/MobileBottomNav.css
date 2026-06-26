@@ -53,4 +53,8 @@
   line-height: 1;
 }
 
-@media
+@media (min-width: 768px) {
+  .mobile-bottom-nav {
+    display: none;
+  }
+}

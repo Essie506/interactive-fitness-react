@@ -1,4 +1,4 @@
-/ components/mobile/MobileBottomNav.tsx
+'./components/mobile/MobileBottomNav'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Home, Search, Dumbbell, CalendarDays, User } from 'lucide-react'
