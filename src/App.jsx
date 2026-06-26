@@ -16,7 +16,7 @@ function App() {
           paddingBottom: '80px',
         }}
       >
-        Coming Soon...
+      
 
 <MobileFeed />      
       </main>
