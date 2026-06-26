@@ -14,7 +14,7 @@ function App() {
         Coming Soon...
       </main>
 
-  
+      <MobileBottomNav />
     </>
   )
 }
