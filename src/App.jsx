@@ -1,6 +1,6 @@
 import { Navbar } from './components/layout/Navbar'
 import { MobileBottomNav } from './components/layout/MobileBottomNav'
-import { MobileTopNav } from './components/layout/mobile/MobileTopNav'
+import { MobileTopNav } from './components/composer/mobile/MobileTopNav'
 
 function App() {
   return (
