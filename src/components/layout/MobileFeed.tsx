@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { StoriesRow } from './StoriesRow'
 import { FeedFilterTabs, FeedFilter } from './FilterFeedTabs'
 import { FeedPostCard, Post } from './FeedPostCard'
-import './mobileFeed.css'
+import './MobileFeed.css'
 
 const MOCK_STORIES = [
   { id: 'maya',  name: 'Maya',  avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=maya' },
