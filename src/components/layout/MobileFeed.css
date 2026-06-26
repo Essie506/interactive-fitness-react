@@ -1,0 +1,305 @@
+/* components/mobile/mobileFeed.css */
+
+/* ── Feed wrapper ── */
+.mobile-feed {
+  width: 100%;
+  background: var(--surface-subtle);
+  padding-bottom: 5rem; /* clearance for fixed bottom nav */
+}
+
+/* ── Stories section ── */
+.mobile-feed__stories {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.stories-row__scroll {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.stories-row__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.stories-row__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stories-row__add-btn {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-full);
+  border: 0.125rem dashed var(--border-strong);
+  background: var(--surface-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.stories-row__ring {
+  background: var(--gradient-story);
+  padding: 0.125rem;
+  border-radius: var(--radius-full);
+}
+
+.stories-row__avatar-wrap {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--surface-card);
+  border: 0.125rem solid var(--surface-card);
+}
+
+.stories-row__avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* name under story */
+.stories-row__name {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: #4b5563;
+  text-align: center;
+  max-width: 3.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Filter tabs ── */
+.mobile-feed__filters {
+  padding: 0 var(--space-4) var(--space-3);
+}
+
+.feed-filter-tabs__scroll {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.125rem;
+}
+
+.feed-filter-tabs__scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-filter-tabs__btn {
+  flex-shrink: 0;
+  padding: 0.375rem var(--space-4);
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--border-light);
+  color: #4b5563;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semi);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.feed-filter-tabs__btn--active {
+  background: linear-gradient(135deg, var(--coral), var(--peach));
+  color: var(--text-inverse);
+}
+
+/* ── Posts list ── */
+.mobile-feed__posts {
+  padding: 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ── Post card ── */
+.feed-post-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-xs);
+}
+
+.feed-post-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+.feed-post-card__avatar {
+  width: var(--icon-btn-size);
+  height: var(--icon-btn-size);
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.feed-post-card__author-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.feed-post-card__author-row {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.125rem;
+}
+
+.feed-post-card__author-name {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: #111827;
+}
+
+.feed-post-card__verified-badge {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-full);
+  background: var(--gradient-mint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feed-post-card__type-badge {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 0.0625rem var(--space-2);
+  border-radius: var(--radius-pill);
+}
+
+.feed-post-card__type-badge--professional {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.feed-post-card__type-badge--business {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.feed-post-card__type-badge--customer {
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+}
+
+.feed-post-card__more-btn {
+  background: none;
+  border: none;
+  padding: var(--space-1);
+  cursor: pointer;
+  color: var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.feed-post-card__content {
+  padding: 0 var(--space-4) var(--space-3);
+}
+
+.feed-post-card__text {
+  font-size: 0.875rem;
+  color: #1f2937;
+  line-height: 1.6;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.feed-post-card__image {
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+  display: block;
+}
+
+.feed-post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4) var(--space-1);
+}
+
+.feed-post-card__tag {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 0.1875rem 0.625rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--coral);
+}
+
+.feed-post-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--surface-subtle);
+  margin-top: var(--space-1);
+}
+
+.feed-post-card__action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--text-muted);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--transition-fast);
+}
+
+.feed-post-card__action-btn--right {
+  margin-left: auto;
+}
+
+.feed-post-card__action-btn--pop {
+  animation: heartPop 0.3s ease;
+}
+
+.feed-post-card__action-count {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semi);
+  color: var(--text-secondary);
+}
+
+@keyframes heartPop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
