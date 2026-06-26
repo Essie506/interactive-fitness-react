@@ -276,6 +276,13 @@
   box-shadow: 0 0 0 2px rgba(255,107,107,0.20), var(--icon-btn-shadow);
 }
 
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+
 @media (min-width: 901px) {
 
   .navbar {
