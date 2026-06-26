@@ -3,6 +3,8 @@
 // import { useUI } from '@/context/UIContext'
 // import { useMessages } from '@/context/MessagesContext'
 
+
+
 import {
   NavbarProps,
   NavbarProfileData,
@@ -56,6 +58,45 @@ function ProofSubmittedIcon({ show }: { show?: boolean }) {
     <span className="navbar__proof-icon" title="Proof documents submitted">
       <i className="fa-solid fa-file-circle-check" aria-hidden="true" />
     </span>
+  )
+}
+
+function NavTitle({
+  variant,
+  profileData,
+}: {
+  variant: string
+  profileData?: NavbarProfileData
+}) {
+  if (variant === 'profile' && profileData) {
+    return (
+      <div className="navbar__title-wrap">
+        <span className="navbar__title">{profileData.name}</span>
+        <ProofSubmittedIcon show={profileData.proofSubmitted} />
+        <VerifiedBadge
+          status={profileData.verificationStatus}
+          type={profileData.verificationType}
+        />
+      </div>
+    )
+  }
+
+  return (
+    <div className="navbar__brand">
+      <div className="navbar__logo">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="white"
+          strokeWidth="2.5"
+        >
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+        </svg>
+      </div>
+      <span className="navbar__title navbar__title--brand">Interactive</span>
+    </div>
   )
 }
 
@@ -186,31 +227,6 @@ function DirectoryNavLinks({
   )
 }
 
-function NavTitle({
-  variant,
-  profileData,
-}: {
-  variant: string
-  profileData?: NavbarProfileData
-}) {
-  if (variant === 'profile' && profileData) {
-    return (
-      <div className="navbar__title-wrap">
-        <span className="navbar__title">{profileData.name}</span>
-
-        <ProofSubmittedIcon show={profileData.proofSubmitted} />
-
-        <VerifiedBadge
-          status={profileData.verificationStatus}
-          type={profileData.verificationType}
-        />
-      </div>
-    )
-  }
-
-  return <div className="navbar__title navbar__title--brand">Interactive</div>
-}
-
 function NavRight({
   variant,
   onComposerOpen,
@@ -248,7 +264,7 @@ function NavRight({
         {isSelf && isEditing && (
           <button
             type="button"
-            className="navbar__icon-btn navbar__save-btn navbar__save-btn--visible"
+            className="navbar__icon-btn navbar__save-btn"
             onClick={onSave}
             aria-label="Save profile"
           >
@@ -259,7 +275,7 @@ function NavRight({
         {isSelf && !isEditing && (
           <button
             type="button"
-            className="navbar__icon-btn navbar__edit-btn navbar__edit-btn--visible"
+            className="navbar__icon-btn navbar__edit-btn"
             onClick={onEdit}
             aria-label="Edit profile"
           >
@@ -270,7 +286,7 @@ function NavRight({
         {!isSelf && (
           <button
             type="button"
-            className={`navbar__icon-btn navbar__follow-btn navbar__follow-btn--visible ${
+            className={`navbar__icon-btn navbar__follow-btn ${
               isFollowing ? 'is-following' : ''
             }`}
             onClick={onFollow}
