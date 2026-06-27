@@ -6,7 +6,7 @@ import { PostCard }        from './PostCard'
 import { PostComposer }    from './PostComposer'
 import { MOCK_POSTS }      from '../data/mockPosts'
 import { Post, ReactionType, Author } from '../types/post.types'
-import './mobileFeed.css'
+import './MobileFeed.css'
 
 const MOCK_STORIES = [
   { id: 'maya',  name: 'Maya',  avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=maya'        },
