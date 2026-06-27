@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { MobileTopNav } from './components/composer/mobile/MobileTopNav'
 import { MobileBottomNav } from './components/layout/MobileBottomNav'
 import { MobileFeed } from './components/layout/MobileFeed'
-import { NavDrawer } from './components/mobile/NavDrawer'
+import { NavDrawer } from './components/layout/NavDrawer'
 
 const MOCK_USER = {
   id: 'alex',
