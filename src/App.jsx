@@ -1,8 +1,7 @@
 import { MobileTopNav } from './components/composer/mobile/MobileTopNav'
 import { MobileBottomNav } from './components/layout/MobileBottomNav'
 import { MobileFeed } from './components/layout/MobileFeed'
-import { PostComposer } from './components/layout/PostComposer'
-import { PostCard } from './components/layout/Postcard'
+
 
 
 
@@ -23,8 +22,6 @@ function App() {
       
 
 <MobileFeed />      
-<PostComposer />
-<PostCard />
       </main>
 
       <MobileBottomNav />
