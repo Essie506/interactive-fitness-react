@@ -1,0 +1,277 @@
+.post-card {
+  background: var(--surface-card);
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  border: 0.0625rem solid var(--border-light);
+  box-shadow: var(--shadow-xs);
+  position: relative;
+}
+
+/* type accents */
+.post-card--achievement { border-left: 0.1875rem solid var(--amber); }
+.post-card--tip         { border-left: 0.1875rem solid var(--mint); }
+.post-card--promo       { border-left: 0.1875rem solid var(--lavender); }
+
+/* ── Header ── */
+.post-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+
+.post-card__author-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.post-card__avatar {
+  width: var(--space-10);
+  height: var(--space-10);
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  display: block;
+}
+
+.post-card__author-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.post-card__author-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+  margin-bottom: 0.1875rem;
+}
+
+.post-card__author-name {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.post-card__verified {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-full);
+  background: var(--gradient-mint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.post-card__meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.post-card__author-type {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 0.0625rem var(--space-2);
+  border-radius: var(--radius-pill);
+}
+
+.post-card__author-type--professional {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.post-card__author-type--business {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.post-card__author-type--customer {
+  background: var(--surface-subtle);
+  color: var(--text-secondary);
+}
+
+.post-card__visibility {
+  font-size: 0.625rem;
+  color: var(--text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.post-card__more-btn {
+  background: none;
+  border: none;
+  padding: var(--space-1);
+  cursor: pointer;
+  color: var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Body ── */
+.post-card__body {
+  padding: 0 var(--space-4) var(--space-3);
+}
+
+.post-card__text {
+  font-size: 0.875rem;
+  color: #1f2937;
+  line-height: 1.65;
+  white-space: pre-line;
+  margin: 0;
+}
+
+.post-card__expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1875rem;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi);
+  padding: var(--space-1) 0 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Media ── */
+.post-card__media {
+  width: 100%;
+}
+
+.post-card__image {
+  width: 100%;
+  max-height: 20rem;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Tags ── */
+.post-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4) var(--space-1);
+}
+
+.post-card__tag {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 0.1875rem 0.625rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--color-primary);
+}
+
+/* ── Reaction summary ── */
+.post-card__reaction-summary {
+  padding: var(--space-1) var(--space-4) 0;
+}
+
+.post-card__reaction-total {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ── Actions ── */
+.post-card__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.625rem var(--space-3) var(--space-3);
+  border-top: 0.0625rem solid var(--surface-subtle);
+  margin-top: var(--space-1);
+}
+
+.post-card__action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+  background: none;
+  border: none;
+  padding: 0.375rem var(--space-2);
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.post-card__action-btn:active {
+  background: var(--border-light);
+}
+
+.post-card__action-btn--save {
+  margin-left: auto;
+}
+
+.post-card__action-count {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi);
+  color: var(--text-secondary);
+}
+
+/* ── Reaction picker ── */
+.post-card__reaction-wrap {
+  position: relative;
+}
+
+.post-card__reaction-picker {
+  position: absolute;
+  bottom: calc(100% + var(--space-2));
+  left: 0;
+  display: flex;
+  gap: var(--space-1);
+  background: var(--surface-card);
+  border: 0.0625rem solid var(--border-light);
+  border-radius: var(--radius-pill);
+  padding: 0.375rem 0.625rem;
+  box-shadow: var(--shadow-lg);
+  white-space: nowrap;
+  z-index: 10;
+  animation: reactionPopIn 0.18s ease;
+}
+
+@keyframes reactionPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(var(--space-1));
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.post-card__reaction-option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: none;
+  border: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semi);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  transition: background 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.post-card__reaction-option:hover,
+.post-card__reaction-option.active {
+  background: rgba(255, 107, 107, 0.1);
+  color: var(--color-primary);
+}
+
+.post-card__reaction-option span {
+  font-size: 0.75rem;
+}
