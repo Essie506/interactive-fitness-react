@@ -20,27 +20,27 @@ export function MobileTopNav({
 }: MobileTopNavProps) {
   return (
     <div className="mobile-top-nav">
-      <button
-        className="mobile-top-nav__brand"
-        onClick={onLogoClick}
-        aria-label="Open navigation menu"
-        type="button"
-      >
-        <div className="mobile-top-nav__logo" aria-hidden="true">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="white"
-            strokeWidth="2.5"
-          >
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-          </svg>
-        </div>
+<div className="mobile-top-nav__brand">
+  <button
+    className="mobile-top-nav__logo"
+    onClick={onLogoClick}
+    aria-label="Open navigation menu"
+    type="button"
+  >
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      strokeWidth="2.5"
+    >
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  </button>
 
-        <span className="mobile-top-nav__title">Interactive</span>
-      </button>
+  <span className="mobile-top-nav__title">Interactive</span>
+</div>
 
       <div className="mobile-top-nav__actions">
         <button
