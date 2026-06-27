@@ -7,8 +7,8 @@ import {
   CUSTOMER_SECTION,
   PROFESSIONAL_SECTION,
   BUSINESS_SECTION,
-} from '../../data/navigationConfig'
-import { NavUser, NavSection, AccountType } from '../../types/navigation.types'
+} from '../data/navigationConfig'
+import { NavUser, NavSection, AccountType } from '../types/navigation.types'
 import './NavDrawer.css'
 
 // ─────────────────────────────────────────────
