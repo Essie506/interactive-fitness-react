@@ -1,6 +1,6 @@
 // src/components/auth/AccountTypeSelect.tsx
 import React from 'react'
-import { AccountType } from '../../types/auth.types'
+import { AccountType } from '../types/auth.types'
 import './AccountTypeSelect.css'
 
 interface AccountTypeOption {

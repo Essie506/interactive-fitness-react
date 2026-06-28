@@ -1,5 +1,4 @@
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+import { initializeApp } from 'firebase/app'
 
 import {
   getAuth,
@@ -11,7 +10,7 @@ import {
   EmailAuthProvider,
   reauthenticateWithCredential,
   updatePassword,
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+} from 'firebase/auth'
 
 import {
   getFirestore,
@@ -28,7 +27,7 @@ import {
   orderBy,
   limit,
   serverTimestamp,
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+} from 'firebase/firestore'
 
 import {
   getStorage,
@@ -37,32 +36,24 @@ import {
   uploadBytesResumable,
   getDownloadURL,
   deleteObject,
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-
-
+} from 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDhR7mwSjPT6PXQ0PHJ0z4IwLr0OPmXPNA",
-  authDomain: "interactive-273c0.firebaseapp.com",
-  projectId: "interactive-273c0",
-  storageBucket: "interactive-273c0.firebasestorage.app",
-  messagingSenderId: "760620887389",
-  appId: "1:760620887389:web:1c13d62578c879b62c4cb4"
-};
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+}
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig)
 
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
-
-
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const storage = getStorage(app);
+export const auth = getAuth(app)
+export const db = getFirestore(app)
+export const storage = getStorage(app)
 
 export {
-  // Auth
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -72,7 +63,6 @@ export {
   reauthenticateWithCredential,
   updatePassword,
 
-  // Firestore
   doc,
   getDoc,
   setDoc,
@@ -87,10 +77,9 @@ export {
   limit,
   serverTimestamp,
 
-  // Storage
   ref,
   uploadBytes,
   uploadBytesResumable,
   getDownloadURL,
-  deleteObject
-};
+  deleteObject,
+}

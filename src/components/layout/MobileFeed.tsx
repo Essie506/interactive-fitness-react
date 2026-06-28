@@ -16,21 +16,20 @@ const MOCK_STORIES = [
   { id: 'urban', name: 'Urban', avatar: 'https://api.dicebear.com/7.x/personas/svg?seed=urbanfitness'},
 ]
 
-// TODO: replace with real authenticated user from auth context
-const CURRENT_USER: Author = {
-  id:         'alex',
-  name:       'Alex Kim',
-  avatar:     'https://api.dicebear.com/7.x/personas/svg?seed=alex',
-  type:       'customer',
-  isVerified: false,
-}
 
 interface MobileFeedProps {
+  currentUser: Author
   onProfileClick?: (authorId: string) => void
-  onStoryClick?:   (storyId: string)  => void
+  onStoryClick?: (storyId: string) => void
 }
 
-export function MobileFeed({ onProfileClick, onStoryClick }: MobileFeedProps) {
+
+export function MobileFeed({
+  currentUser,
+  onProfileClick,
+  onStoryClick,
+}: MobileFeedProps) {
+
   const [posts,           setPosts]           = useState<Post[]>(MOCK_POSTS)
   const [activeFilter,    setActiveFilter]    = useState<FeedFilter>('all')
   const [composerOpen,    setComposerOpen]    = useState(false)
@@ -90,7 +89,7 @@ export function MobileFeed({ onProfileClick, onStoryClick }: MobileFeedProps) {
 
       {composerOpen && (
         <PostComposer
-          currentUser={CURRENT_USER}
+          currentUser={currentUser}
           onClose={()         => setComposerOpen(false)}
           onPublish={handlePublish}
         />

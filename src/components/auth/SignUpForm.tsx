@@ -8,13 +8,13 @@ import {
   doc,
   setDoc,
   serverTimestamp,
-} from '../../firebase/firebase-config'
+} from '../firebase/firebase-config'
 import {
   AccountType,
   InteractiveUser,
   roleFromAccountType,
   routeFromAccountType,
-} from '../../types/auth.types'
+} from '../types/auth.types'
 import { PasswordInput }      from './PasswordInput'
 import { AccountTypeSelect }  from './AccountTypeSelect'
 import './AuthForms.css'

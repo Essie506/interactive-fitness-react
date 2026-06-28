@@ -1,5 +1,4 @@
 
-MessagesContext — Messages State
 // context/MessagesContext.tsx
 type MessagesMode = "drawer" | "popup" | "popout" | "minimized" | "closed"
 
