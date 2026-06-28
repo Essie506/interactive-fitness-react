@@ -8,7 +8,7 @@ import {
   doc,
   setDoc,
   serverTimestamp,
-} from '../firebase/firebase-config'
+} from '../../../firebase-config'
 import {
   AccountType,
   InteractiveUser,

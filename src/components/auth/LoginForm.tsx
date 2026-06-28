@@ -8,7 +8,7 @@ import {
   sendPasswordResetEmail,
   doc,
   getDoc,
-} from '.../firebase/firebase-config'
+} from '../../../firebase-config'
 import { InteractiveUser, routeFromAccountType } from '../types/auth.types'
 import { PasswordInput } from './PasswordInput'
 import './AuthForms.css'
