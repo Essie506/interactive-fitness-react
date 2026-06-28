@@ -27,7 +27,7 @@
   gap: 0.875rem;
 }
 
-.auth-form__field { width: 100%; }
+.auth-form__field { width: 89%; }
 
 /* ── Error / success banners ── */
 .auth-form__error,
