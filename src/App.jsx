@@ -6,7 +6,7 @@ import { ProtectedRoute } from './components/router/ProtectedRoute'
 import { useAuth } from './context/AuthContext'
 
 import { LoginPage } from './components/pages/LoginPage'
-import { SignupPage } from './components/pages/SignupPage'
+import { SignupPage } from './components/pages/SignUpPage'
 import { FeedPage } from './components/pages/FeedPage'
 
 
