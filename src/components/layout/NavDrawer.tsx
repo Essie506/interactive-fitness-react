@@ -254,26 +254,7 @@ export function NavDrawer({
           )}
 
           {/* ── Search ── */}
-          <div className="nav-drawer__search-wrap">
-            <Search size={15} className="nav-drawer__search-icon" />
-            <input
-              type="text"
-              className="nav-drawer__search"
-              placeholder="Search menu…"
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              aria-label="Search navigation"
-            />
-            {searchQuery && (
-              <button
-                className="nav-drawer__search-clear"
-                onClick={() => setSearchQuery('')}
-                aria-label="Clear search"
-              >
-                <X size={13} />
-              </button>
-            )}
-          </div>
+         
 
           {/* ── Account section (top, account-specific) ── */}
           {accountSection && matchesSearch(accountSection.label) && (
@@ -309,17 +290,28 @@ export function NavDrawer({
             )
           })}
 
-          {/* ── Search shortcut ── */}
-          {(!query || 'search'.includes(query)) && (
-            <NavLink
-              to="/search"
-              className="nav-drawer__standalone-link"
-              onClick={onClose}
-            >
-              <Search size={16} />
-              <span>Search Interactive</span>
-            </NavLink>
-          )}
+
+ <div className="nav-drawer__search-wrap">
+            <Search size={15} className="nav-drawer__search-icon" />
+            <input
+              type="text"
+              className="nav-drawer__search"
+              placeholder="Search menu…"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              aria-label="Search navigation"
+            />
+            {searchQuery && (
+              <button
+                className="nav-drawer__search-clear"
+                onClick={() => setSearchQuery('')}
+                aria-label="Clear search"
+              >
+                <X size={13} />
+              </button>
+            )}
+          </div>
+
 
           {/* ── Footer ── */}
           {currentUser && (
