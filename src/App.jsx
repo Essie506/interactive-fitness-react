@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 import { AuthProvider } from './context/AuthContext'
 import { ProtectedRoute } from './components/router/ProtectedRoute'
-import { useAuth } from './context/AuthContext'
 
 import { LoginPage } from './components/pages/LoginPage'
 import { SignupPage } from './components/pages/SignUpPage'

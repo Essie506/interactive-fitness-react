@@ -9,7 +9,7 @@ import { NavDrawer } from '../../components/layout/NavDrawer'
 import { MobileBottomNav } from '../../components/layout/MobileBottomNav'
 
 
-function FeedPage() {
+export function FeedPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { interactiveUser } = useAuth()
 
