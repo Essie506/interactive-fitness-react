@@ -1,3 +1,4 @@
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
 
 import {
@@ -9,24 +10,36 @@ import {
   sendPasswordResetEmail,
   EmailAuthProvider,
   reauthenticateWithCredential,
-  updatePassword
+  updatePassword,
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
 import {
   getStorage,
   ref,
   uploadBytes,
-  getDownloadURL
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject,
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  collection,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDhR7mwSjPT6PXQ0PHJ0z4IwLr0OPmXPNA",
@@ -43,14 +56,13 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export {
-  auth,
-  db,
-    storage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
 
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+export {
+  // Auth
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
@@ -60,9 +72,25 @@ export {
   reauthenticateWithCredential,
   updatePassword,
 
+  // Firestore
   doc,
+  getDoc,
   setDoc,
+  updateDoc,
+  deleteDoc,
   collection,
   addDoc,
-  serverTimestamp
+  getDocs,
+  query,
+  where,
+  orderBy,
+  limit,
+  serverTimestamp,
+
+  // Storage
+  ref,
+  uploadBytes,
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject
 };
