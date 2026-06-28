@@ -1,0 +1,57 @@
+/* src/components/auth/AuthLayout.css */
+
+.auth-layout {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #fff5f5 0%, #fff8f0 50%, #f0fffe 100%);
+  padding: 1.5rem 1rem;
+}
+
+.auth-panel {
+  width: 100%;
+  max-width: 22rem;
+}
+
+.auth-panel__inner {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 40px rgba(255, 107, 107, 0.1), 0 2px 8px rgba(0,0,0,0.06);
+  padding: 2rem 1.75rem 1.75rem;
+}
+
+.auth-panel__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.75rem;
+  text-align: center;
+}
+
+.auth-panel__logo {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.875rem;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 50%, #FFD93D 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 14px rgba(255,107,107,0.35);
+}
+
+.auth-panel__brand {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.25rem;
+}
+
+.auth-panel__tagline {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin: 0;
+}

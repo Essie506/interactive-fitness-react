@@ -1,4 +1,14 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+
+import { AuthProvider } from './context/AuthContext'
+import { ProtectedRoute } from './router/ProtectedRoute'
+import { useAuth } from './context/AuthContext'
+
+import { LoginPage } from './pages/LoginPage'
+import { SignupPage } from './pages/SignupPage'
+import { FeedPage } from './pages/FeedPage'
+
 import { MobileTopNav } from './components/composer/mobile/MobileTopNav'
 import { MobileBottomNav } from './components/layout/MobileBottomNav'
 import { MobileFeed } from './components/layout/MobileFeed'
@@ -12,7 +22,7 @@ const MOCK_USER = {
   isVerified: false,
 }
 
-function App() {
+function FeedPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
 
   return (
@@ -23,12 +33,7 @@ function App() {
         onLogoClick={() => setDrawerOpen(true)}
       />
 
-      <main
-        style={{
-          paddingTop: '64px',
-          paddingBottom: '80px',
-        }}
-      >
+      <main style={{ paddingTop: '64px', paddingBottom: '80px' }}>
         <MobileFeed />
       </main>
 
@@ -41,6 +46,51 @@ function App() {
 
       <MobileBottomNav />
     </>
+  )
+}
+
+const ProfilePage = () => <div>Professional Profile</div>
+const BusinessProfilePage = () => <div>Business Profile</div>
+
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/join" element={<SignupPage />} />
+
+          <Route
+            path="/feed"
+            element={
+              <ProtectedRoute allowedTypes={['customer']}>
+                <FeedPage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute allowedTypes={['professional']}>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/business-profile"
+            element={
+              <ProtectedRoute allowedTypes={['business']}>
+                <BusinessProfilePage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
