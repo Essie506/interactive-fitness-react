@@ -8,7 +8,7 @@ import React, {
   ReactNode,
 } from 'react'
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { auth, db, doc, getDoc } from '../firebase/firebase-config'
+import { auth, db, doc, getDoc } from '../../firebase/firebase-config'
 import { InteractiveUser, AccountType, ViewerMode } from '../components/types/auth.types'
 
 interface AuthContextValue {
