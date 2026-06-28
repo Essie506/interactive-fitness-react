@@ -11,7 +11,7 @@ import {
 } from '../../../firebase/firebase-config'
 import { InteractiveUser, routeFromAccountType } from '../types/auth.types'
 import { PasswordInput } from './PasswordInput'
-import './AuthForms.css'
+import './AuthForm.css'
 
 export function LoginForm() {
   const navigate = useNavigate()

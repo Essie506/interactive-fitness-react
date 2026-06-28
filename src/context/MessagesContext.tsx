@@ -1,5 +1,8 @@
 
 // context/MessagesContext.tsx
+
+import { createContext, useContext, useState, ReactNode } from 'react'
+
 type MessagesMode = "drawer" | "popup" | "popout" | "minimized" | "closed"
 
 interface MessagesState {
@@ -19,7 +22,7 @@ interface MessagesState {
   setUploadedMedia: (files: File[]) => void
 }
 
-export function MessagesProvider({ children }) {
+export function MessagesProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<MessagesMode>("closed")
   const [activeThread, setActiveThread] = useState<string | null>(null)
   const [isChatView, setIsChatView] = useState(false)

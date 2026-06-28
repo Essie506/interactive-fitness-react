@@ -12,7 +12,7 @@ import {
 import {
   AccountType,
   InteractiveUser,
-  roleFromAccountType
+  roleFromAccountType,
   routeFromAccountType,
 } from '../types/auth.types'
 import { PasswordInput }      from './PasswordInput'
