@@ -5,9 +5,9 @@ import { AuthProvider } from './context/AuthContext'
 import { ProtectedRoute } from './components/router/ProtectedRoute'
 import { useAuth } from './context/AuthContext'
 
-import { LoginPage } from './pages/LoginPage'
-import { SignupPage } from './pages/SignupPage'
-import { FeedPage } from './pages/FeedPage'
+import { LoginPage } from './components/pages/LoginPage'
+import { SignupPage } from './components/pages/SignupPage'
+import { FeedPage } from './components/pages/FeedPage'
 
 
 const MOCK_USER = {
