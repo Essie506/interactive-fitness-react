@@ -1,3 +1,14 @@
+
+import { useState } from 'react'
+
+import { useAuth } from '../../context/Authcontext'
+
+import { Navbar } from '../components/layout/Navbar'
+import { MobileFeed } from '../components/layout/MobileFeed'
+import { NavDrawer } from '../components/layout/NavDrawer'
+import { MobileBottomNav } from '../components/layout/MobileBottomNav'
+
+
 function FeedPage() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { interactiveUser } = useAuth()
@@ -19,7 +30,7 @@ function FeedPage() {
       />
 
       <main style={{ paddingTop: '64px', paddingBottom: '80px' }}>
-        <../MobileFeed />
+        <MobileFeed />
       </main>
 
       <NavDrawer
