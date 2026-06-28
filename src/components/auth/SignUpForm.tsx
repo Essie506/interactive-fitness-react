@@ -17,7 +17,7 @@ import {
 } from '../types/auth.types'
 import { PasswordInput }      from './PasswordInput'
 import { AccountTypeSelect }  from './AccountTypeSelect'
-import './AuthForms.css'
+import './AuthForm.css'
 
 export function SignupForm() {
   const navigate = useNavigate()
