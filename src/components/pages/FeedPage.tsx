@@ -14,10 +14,11 @@ function FeedPage() {
   const { interactiveUser } = useAuth()
 
   const currentUser = {
-    id: interactiveUser?.uid,
+    id: interactiveUser?.uid || '',
     name: interactiveUser?.displayName || 'Member',
     avatar: interactiveUser?.avatar || '',
     accountType: interactiveUser?.accountType || 'customer',
+    type: interactiveUser?.accountType || 'customer',
     isVerified: interactiveUser?.verified || false,
   }
 
@@ -26,11 +27,10 @@ function FeedPage() {
       <Navbar
         unreadMessages={3}
         unreadNotifications={2}
-        onLogoClick={() => setDrawerOpen(true)}
       />
 
       <main style={{ paddingTop: '64px', paddingBottom: '80px' }}>
-        <MobileFeed />
+        <MobileFeed currentUser={currentUser} />
       </main>
 
       <NavDrawer
