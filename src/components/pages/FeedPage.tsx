@@ -1,12 +1,12 @@
 
 import { useState } from 'react'
 
-import { useAuth } from '../../context/Authcontext'
+import { useAuth } from '../../context/AuthContext'
 
-import { Navbar } from '../components/layout/Navbar'
-import { MobileFeed } from '../components/layout/MobileFeed'
-import { NavDrawer } from '../components/layout/NavDrawer'
-import { MobileBottomNav } from '../components/layout/MobileBottomNav'
+import { Navbar } from '../../components/layout/Navbar'
+import { MobileFeed } from '../../components/layout/MobileFeed'
+import { NavDrawer } from '../../components/layout/NavDrawer'
+import { MobileBottomNav } from '../../components/layout/MobileBottomNav'
 
 
 function FeedPage() {
