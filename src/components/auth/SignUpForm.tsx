@@ -8,11 +8,11 @@ import {
   doc,
   setDoc,
   serverTimestamp,
-} from '../../../firebase-config'
+} from '../../../firebase/firebase-config'
 import {
   AccountType,
   InteractiveUser,
-  roleFromAccountType,
+  roleFromAccountType
   routeFromAccountType,
 } from '../types/auth.types'
 import { PasswordInput }      from './PasswordInput'
