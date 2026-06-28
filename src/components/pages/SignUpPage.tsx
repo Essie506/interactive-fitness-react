@@ -1,7 +1,7 @@
 // src/pages/SignupPage.tsx
 import React from 'react'
-import { AuthLayout } from '../assets/auth/AuthLayout'
-import { SignupForm } from '../components/auth/SignupForm'
+import { AuthLayout } from '../auth/AuthLayout'
+import { SignupForm } from '../auth/SignUpForm'
 
 export function SignupPage() {
   return (
