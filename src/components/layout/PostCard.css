@@ -123,6 +123,8 @@
   line-height: 1.65;
   white-space: pre-line;
   margin: 0;
+  white-space: prewrap;
+  overflow-wrap: anywhere;
 }
 
 .post-card__expand-btn {
