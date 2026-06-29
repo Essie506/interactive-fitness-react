@@ -24,10 +24,11 @@ export function FeedPage() {
 
   return (
     <>
-      <Navbar
-        unreadMessages={3}
-        unreadNotifications={2}
-      />
+      <MobileTopNav
+  unreadMessages={3}
+  unreadNotifications={2}
+  onLogoClick={() => setDrawerOpen(true)}
+/>
 
       <main style={{ paddingTop: '64px', paddingBottom: '80px' }}>
         <MobileFeed currentUser={currentUser} />
